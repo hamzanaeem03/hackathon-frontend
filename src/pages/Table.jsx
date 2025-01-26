@@ -53,40 +53,40 @@ const Table = () => {
 
   const handleRowDialogSubmit = (e) => {
     e.preventDefault();
-  
+
     // Initialize jsPDF instance
     const doc = new jsPDF();
-  
+
     // Title Styling
     doc.setFontSize(18);
     doc.setTextColor(40, 40, 40);
     doc.text("Token Details", 105, 20, { align: "center" });
-  
+
     // Add a horizontal line below the title
     doc.setDrawColor(0, 0, 0);
     doc.setLineWidth(0.5);
     doc.line(15, 25, 195, 25);
-  
+
     // User Details Section Header
     doc.setFontSize(16);
     doc.setTextColor(40, 40, 40);
     doc.text("User Details", 20, 70);
-  
+
     // User Details Styling
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
     doc.text(`CNIC:`, 20, 80);
     doc.text(selectedRow?.cnic || "-", 60, 80);
-  
+
     doc.text(`Name:`, 20, 90);
     doc.text(selectedRow?.name || "-", 60, 90);
-  
+
     doc.text(`Phone Number:`, 20, 100);
     doc.text(selectedRow?.phone || "-", 60, 100);
-  
+
     doc.text(`Address:`, 20, 110);
     doc.text(selectedRow?.address || "-", 60, 110);
-  
+
     // Category Section (with safety check)
     doc.setFontSize(14);
     doc.setTextColor(50, 50, 50);
@@ -94,7 +94,7 @@ const Table = () => {
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 255); // Blue color
     doc.text(rowDialogData?.category || "-", 60, 40);  // Using optional chaining
-  
+
     // Purpose Section (with safety check)
     doc.setFontSize(14);
     doc.setTextColor(50, 50, 50);
@@ -102,12 +102,12 @@ const Table = () => {
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 255);
     doc.text(rowDialogData?.purpose || "-", 60, 50);  // Using optional chaining
-  
+
     // Add a decorative rectangle border around the content
     doc.setDrawColor(100, 100, 100);
     doc.setLineWidth(0.5);
     doc.rect(15, 30, 180, 100);
-  
+
     // Footer
     doc.setFontSize(10);
     doc.setTextColor(150, 150, 150);
@@ -117,16 +117,16 @@ const Table = () => {
       140,
       { align: "center" }
     );
-  
+
     // Save the styled PDF
     doc.save("token.pdf");
-  
+
     // Reset state and close the dialog
     setRowDialogData(null);  // Reset the dialog data (or set default values as needed)
     setIsRowDialogOpen(false);  // Close the dialog
   };
-  
-  
+
+
   return (
     <div className="w-full h-full">
       <div className="w-full h-full flex justify-between items-center mb-3 mt-1 pl-3">
@@ -235,7 +235,7 @@ const Table = () => {
             className="w-1/3 p-6 bg-white rounded shadow"
           >
             <h2 className="mb-4 text-xl font-semibold text-gray-800">
-            Genrate token
+              Genrate token
             </h2>
             <div className="mb-4">
               <label className="block text-sm text-gray-700 mb-1">Category</label>
@@ -274,7 +274,7 @@ const Table = () => {
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+                className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-600"
               >
                 Genrate Token
               </button>
@@ -283,7 +283,7 @@ const Table = () => {
         </div>
       )}
 
-{isDialogOpen && (
+      {isDialogOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
           role="dialog"
